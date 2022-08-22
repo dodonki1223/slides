@@ -4,6 +4,7 @@ paginate: true
 _paginate: false
 style: |
     p, h1, h2, h3, h4 { text-align: left; }
+    section { padding-top: 0; }
     section.delimiter { background: linear-gradient(25deg, yellow 30%,yellow 100px,white 100px,white 100%); }
     ul { list-style: none; }
     # div { border: solid; }
@@ -20,6 +21,10 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
 
 <!-- _class: delimiter -->
 
+<style scoped>
+section { padding-top: 5rem !important; } 
+</style>
+
 # Terraform と Serverless Framework を相互連携する
 
 <div style="text-align: center;padding-top: 80px">
@@ -32,6 +37,10 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
 
 <!-- _class: delimiter -->
 
+<style scoped>
+section { padding-top: 5rem !important; } 
+</style>
+
 # 自己紹介
 
 ---
@@ -40,9 +49,9 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   <h1>自己紹介</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  <div style="height: 80%; display: flex;justify-content: space-between; margin: 1rem;">
-    <div style="width: 45%; background: url(https://scontent-nrt1-1.xx.fbcdn.net/v/t1.6435-9/119604723_3285085514901787_1350492750591504360_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=HmLep5LV4WoAX8Rw7VN&tn=T6b3UBCIVq3UemOD&_nc_ht=scontent-nrt1-1.xx&oh=00_AT9LfFhBMp6HJL0PEV4OBOodt0dhVG9kVuSD1IcR8Dit1g&oe=6326B72D) no-repeat top left; background-size: 100%"></div>
-    <div style="width: 55%;">
+  <div style="height: 100%; display: flex;justify-content: space-between; margin: 1rem;">
+    <div style="width: 50%; background: url(https://scontent-nrt1-1.xx.fbcdn.net/v/t1.6435-9/119604723_3285085514901787_1350492750591504360_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=HmLep5LV4WoAX8Rw7VN&tn=T6b3UBCIVq3UemOD&_nc_ht=scontent-nrt1-1.xx&oh=00_AT9LfFhBMp6HJL0PEV4OBOodt0dhVG9kVuSD1IcR8Dit1g&oe=6326B72D) no-repeat top left; background-size: 100%"></div>
+    <div style="width: 50%;">
       <!-- 名前 -->
       <p style="margin-left: 2rem;"><b>名前</b></p>
       <p style="margin-left: 4rem; margin-top: -1rem;">高木 勇気</p>
@@ -69,14 +78,18 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   <h3>最近の活動</h3>
 
   <div  style="height: 100%; display: flex;justify-content: space-between;">
-    <div style="width: 50%; background: url(./image/01_qiita.png) no-repeat top left; background-size: 63%"></div>
-    <div style="width: 50%; background: url(./image/02_article.png) no-repeat top left; background-size: 80%"></div>
+    <div style="width: 50%; background: url(./image/01_qiita.png) no-repeat top left; background-size: 72%"></div>
+    <div style="width: 50%; background: url(./image/02_article.png) no-repeat top left; background-size: 90%"></div>
   </div>
 </div>
 
 ---
 
 <!-- _class: delimiter -->
+
+<style scoped>
+section { padding-top: 5rem !important; } 
+</style>
 
 # 今日話すこと
 
@@ -96,6 +109,10 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
 ---
 
 <!-- _class: delimiter -->
+
+<style scoped>
+section { padding-top: 5rem !important; } 
+</style>
 
 # アジェンダ
 
@@ -124,7 +141,7 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
 
   ### こんな感じのサーバーレスアーキテクチャを題材にします。
 
-  <div>
+  <div style="padding-top:2rem;">
     <img src="https://raw.githubusercontent.com/dodonki1223/image_garage/master/translate/00_overall.png" />
   </div>
 </div>
@@ -137,7 +154,7 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
 
   ### こちらの構成は **AWS 初心者向けハンズオン** の「 **[サーバーレスアーキテクチャで翻訳 Web API を構築する](https://pages.awscloud.com/event_JAPAN_Hands-on-for-Beginners-Serverless-2019_Contents.html)** 」で作成する題材になります。
 
-  <div style="text-align: center;">
+  <div style="text-align: center;padding-top: 2rem;">
     <img src="./image/03_hands_on.png" />
   </div>
 </div>
@@ -178,7 +195,7 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   <h1>2. Terraform と Serverless Framework で管理するもの</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  <div style="text-align: center;">
+  <div style="text-align: center; padding-top:1rem;">
     <img style="width: 68%" src="https://raw.githubusercontent.com/dodonki1223/image_garage/master/translate/01_relationship_between_terraform_and_serverless_framework.png" />
   </div>
 </div>
@@ -222,6 +239,8 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   ## Serverless Framework で多くのリソースを管理しているのは **ローカルの開発環境が整っている** ためです。
 
   ## **ローカルの開発環境で使用する必要があるのものは Serverless Framework で管理** し **それ以外は Terraform で管理する** ようにしています。
+
+  ## 今日はローカルの開発環境については詳しく説明しません。
 </div>
 
 ---
@@ -233,7 +252,7 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   ### ローカルにて実行と DynamoDB の操作ができます。
 
   <div style="text-align: center;">
-    <img style="width: 80%" src="./image/04_local_development.png" />
+    <img style="width: 90%" src="./image/04_local_development.png" />
   </div>
 </div>
 
@@ -260,7 +279,314 @@ AWS のハンズオン資料の「サーバーレスアーキテクチャで翻�
   <h1>3. Serverless Framework を使ってコード化</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
+**フォルダを作成し移動**
+
+```shell
+$ mkdir serverless
+$ cd serverless
+```
+
+**ハンズオンと同じ Python のプロジェクトを指定して作成する**
+
+```shell
+$ serverless create --template aws-python3 --name translate-function
+```
+
+**ハンズオンと同じファイル名に変更する**
+
+```shell
+$ mv handler.py translate_function.py
+```
 </div>
 
+---
 
-# ここに Serverless Framework を使ったコード化方法を記載する
+<style scoped>
+code {
+    font-size:23px;
+}
+</style>
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+### **serverless という AWS profile を予め設定** しておきます。既に作成されている **serverless.yml** に以下の内容のように改修します。
+
+```yml
+service: translate-function
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ap-northeast-1
+  profile: serverless
+
+functions:
+  translate:
+    name: translate-function
+    handler: translate_function.lambda_handler
+```
+</div>
+
+---
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+### **translate_function.py** も以下の内容のように改修します。
+
+```python
+import json
+
+def lambda_handler(event, context):
+    body = {
+        "message": "Go Serverless v1.0! Your function executed successfully!",
+        "input": event
+    }
+
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+
+    return response
+```
+
+</div>
+
+---
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### `serverless deploy` コマンドを実行すると AWS Lambda 以外にも **CloudWatch Logs, IAM Role が作成** されます。
+
+  ### **IAM ロールは後に Terraform で作成したものに移行する予定です。**
+
+  ### Amazon API Gateway, Amazon DynamoDB も作っていき、ハンズオンと同じ状態にしていきます。
+</div>
+
+---
+
+<style scoped>
+code {
+    font-size:16px;
+}
+</style>
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### serverless.yml の **provider に endpointType** と **handler の下に events** を追加し Amazon API Gateway と AWS Lambda が繋ぎ込みされるようにします。**input_text** でクエリパラメータを取得できるようになります。
+
+```yml
+service: translate-function
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ap-northeast-1
+  profile: serverless
+  endpointType: regional
+
+functions:
+  translate:
+    name: translate-function-v2
+    handler: translate_function.lambda_handler
+    events:
+      - http:
+          method: get
+          path: /translate
+          request:
+            parameters:
+              querystrings:
+                input_text: false
+```
+</div>
+
+---
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### Amazon Translate, Amazon DynamoDB にアクセスできるように AWS Lambda で使用されている IAM ロールに一時的に権限を付与します。
+
+  <div style="text-align: center; padding-top: 2rem;">
+    <img style="width: 100%" src="./image/05_lambda_iam_role.png" />
+  </div>
+</div>
+
+---
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### TranslateFullAccess, AmazonDynamoDBFullAccess の権限を IAM ロールに追加します。
+
+  <div style="text-align: center;">
+    <img style="width: 90%" src="./image/06_add_iam_policy.png" />
+  </div>
+</div>
+
+---
+
+<style scoped>
+code {
+    font-size:11px;
+}
+</style>
+
+<div style="height: 100%">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### serverless.yml に **resources** を追加し DynamoDB の table を作成します。
+
+```yml
+service: translate-function
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ap-northeast-1
+  profile: serverless
+  endpointType: regional
+
+functions:
+  translate:
+    name: translate-function-v2
+    handler: translate_function.lambda_handler
+    events:
+      - http:
+          method: get
+          path: /translate
+          request:
+            parameters:
+              querystrings:
+                input_text: false
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: translate-history
+        AttributeDefinitions:
+          - AttributeName: timestamp
+            AttributeType: S
+        KeySchema:
+          - AttributeName: timestamp
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+```
+</div>
+
+---
+
+<style scoped>
+code { font-size:11px; }
+</style>
+
+<div style="height: 100%;">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  #### translate_function.py を改修し **日本語を英語に翻訳する機能** と **翻訳結果を DynamoDB に保存する処理** を実装します。
+
+```python
+import os
+import boto3
+import json
+import datetime
+
+translate = boto3.client('translate')
+dynamodb_translate_history_tbl = boto3.resource('dynamodb').Table('translate-history')
+
+def lambda_handler(event, context):
+    input_text = event['queryStringParameters']['input_text']
+
+    response = translate.translate_text(
+        Text=input_text,
+        SourceLanguageCode='ja',
+        TargetLanguageCode='en',
+    )
+
+    output_text = response.get('TranslatedText')
+
+    dynamodb_translate_history_tbl.put_item(
+        Item = {
+            'timestamp': datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
+            'input_text': input_text,
+            'output_text': output_text
+        }
+    )
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps({
+            'output_text': output_text
+        }),
+        'isBase64Encoded': False,
+        'headers': {}
+    }
+```
+</div>
+
+---
+
+<style scoped>
+/* code { font-size:11px; } */
+</style>
+
+<div style="height: 100%;">
+  <h1>3. Serverless Framework を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### これでハンズオンで作成した **サーバーレスアーキテクチャと同じ状態** になりました。
+
+  ### 次は一部手動で作成していた **IAM ロール** を Terraform で実装していきます！
+
+</div>
+
+---
+
+<div style="height: 100%">
+  <h1>アジェンダ</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  <div style="padding-left: 2rem;">
+    <h2 style="padding: 0; color: gray;">1. 題材</h2>
+    <h2 style="padding: 0; color: gray;">2. Terraform と Serverless Framework で管理するもの</h2>
+    <h2 style="padding: 0; color: gray;">3. Serverless Framework を使ってコード化</h2>
+    <h2 style="padding: 0;">4. Terrafomer を使ってコード化</h2>
+    <h2 style="padding: 0; color: gray;">5. Serverless Framework → Terraform を連携する</h2>
+    <h2 style="padding: 0; color: gray;">6. Terraform → Serverless Framework を連携する</h2>
+    <h2 style="padding: 0; color: gray;">7. まとめ</h2>
+  </div>
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### これでハンズオンで作成した **サーバーレスアーキテクチャと同じ状態** になりました。
+
+  ### 次は一部手動で作成していた **IAM ロール** を Terraform で実装していきます！
+
+</div>
