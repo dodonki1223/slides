@@ -585,8 +585,125 @@ def lambda_handler(event, context):
   <h1>4. Terrafomer を使ってコード化</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  ### これでハンズオンで作成した **サーバーレスアーキテクチャと同じ状態** になりました。
+  ### [Terraformer](https://github.com/GoogleCloudPlatform/terraformer) を使って Serverless Framework で仮で作成した **IAM ロールを取り込みコード化** します。
 
-  ### 次は一部手動で作成していた **IAM ロール** を Terraform で実装していきます！
+  ### Terraformer を使用することで **Terraform の管理化でないリソースをコード化** してくれるのでとても便利です！
 
+  ### Terraformer は以下のコマンドで簡単にインストール可能です。
+
+  ```shell
+  $ brew install terraformer
+  ```
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### フォルダを作成し移動
+
+  ```shell
+  $ mkdir terraform
+  $ cd terraform
+  ```
+
+  ### AWS のリソースを操作できるように provider の設定ファイルを作成
+
+  ```shell
+  $ touch provider.tf
+  ```
+
+  ### AWS の provider の設定を書き込む（ **terraform という AWS profile を予め設定** しておきます）
+
+  ```terraform
+  provider "aws" {
+    region  = "ap-northeast-1"
+    profile = "terraform"
+  }
+  ```
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### 最新バージョンの Terraform に変更する
+
+  ```shell
+  $ asdf local terraform 1.2.7
+  ```
+
+  ### IAM ロール名を指定して Terraform のコードを生成する
+
+  「generated/aws/iam/」 配下に取り込んだコードが作成されます。
+
+  ```shell
+  $ terraformer import aws --resources=iam --filter="Name=name;Value=IAM_ROLE_NAME" --profile=terraform
+  ```
+
+  ### Terraformer が作成した provider の設定を以前設定したものに合わせる
+
+  ```shell
+  $ cat provider.tf > generated/aws/iam/provider.tf
+  ```
+
+  ### 必要のないファイルを削除します
+
+  ```shell
+  $ rm -rf .terraform .terraform.lock.hcl provider.tf
+  ```
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### tfstate ファイルのバージョンが 0.12.31 の状態になっているのでバージョンアップさせる
+
+  terraform のバージョンを 0.13.x にする
+
+  ```shell
+  $ cd generated/aws/iam
+  $ asdf local terraform 0.13.7
+  ```
+
+  0.13.7 のバージョンに変更しアップグレードコマンドを実行する
+
+  ```shell
+  $ terraform init
+  $ terraform 0.13upgrade
+  ```
+
+  実際に apply & tfstate をバージョンアップさせ問題ないことを確認する
+
+  ```shell
+  $ terraform apply
+  ```
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ### これで **Terraform で IAM ロールの管理** もできるようになりました！
+
+  ### 次は Terraform で管理させた **IAM ロールを Serverless Framework で管理できる** ようにします！
+
+
+  #### ＜補足情報＞
+
+  Terraformer がサポートしている **Terraform のバージョンは 0.13** 。
+  でも…… Terraformer import は **terraform 0.13.x は ❌** だけど **Terraform 1.2.7 は ⭕**
+
+  バージョンが 0.13.x の状態になっているのでこちらはよしなにバージョンアップしてください。
+
+  M1 Mac だと 0.13.x 系のバージョンのインストールが出来ないので私が以前書いた以下の[記事(M1 Mac でそのバージョンの Terraform 使えないじゃないか！)](https://qiita.com/dodonki1223/items/314fd264cbcb4406c743)を参考にして下さい。
 </div>
