@@ -101,7 +101,7 @@ section { padding-top: 5rem !important; }
 
   ## ふと Terraform と Serverless Framework はどうやって連携すればいいのか？という疑問を持ちました。
 
-  ## そこで実際に試してみました 💪
+  ## ちょうどいい題材もあったので実際に試してみました 💪
 
   ## 今日は実際に試した結果、私が得た知見を発表したいと思います！
 </div>
@@ -275,6 +275,12 @@ section { padding-top: 5rem !important; }
   <h1>3. Serverless Framework を使ってコード化</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
+**Serverless Framework コマンドをインストール**
+
+```shell
+$ npm install -g serverless
+```
+
 **フォルダを作成し移動**
 
 ```shell
@@ -395,7 +401,7 @@ provider:
 
 functions:
   translate:
-    name: translate-function-v2
+    name: translate-function
     handler: translate_function.lambda_handler
     events:
       - http:
@@ -462,7 +468,7 @@ provider:
 
 functions:
   translate:
-    name: translate-function-v2
+    name: translate-function
     handler: translate_function.lambda_handler
     events:
       - http:
@@ -625,14 +631,19 @@ def lambda_handler(event, context):
 
 ---
 
+<style scoped>
+code { font-size: 17px }
+</style>
+
 <div style="height: 100%;">
   <h1>4. Terrafomer を使ってコード化</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  ### 最新バージョンの Terraform に変更する
+  ### 最新バージョンの Terraform に変更し初期化する
 
   ```shell
   $ asdf local terraform 1.2.7
+  $ terraform init
   ```
 
   ### IAM ロール名を指定して Terraform のコードを生成する
@@ -654,6 +665,58 @@ def lambda_handler(event, context):
   ```shell
   $ rm -rf .terraform .terraform.lock.hcl provider.tf
   ```
+</div>
+
+---
+
+<style scoped>
+code { font-size: 12px; }
+</style>
+
+<div style="height: 100%;">
+  <h1>4. Terrafomer を使ってコード化</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+Terraformer で生成された iam_role.tf は以下のような感じになっていると思います。
+
+```terraform
+resource "aws_iam_role" "tfer--translate-function-dev-ap-northeast-1-lambdaRole" {
+  assume_role_policy = <<POLICY
+{
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      }
+    }
+  ],
+  "Version": "2012-10-17"
+}
+POLICY
+
+  inline_policy {
+    name   = "translate-function-dev-lambda"
+    policy = "xxxxxxxxxxxxxxxxx"
+  }
+
+  managed_policy_arns  = ["arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess", "arn:aws:iam::aws:policy/TranslateFullAccess"]
+  max_session_duration = "3600"
+  name                 = "translate-function-dev-ap-northeast-1-lambdaRole"
+  path                 = "/"
+
+  tags = {
+    STAGE = "dev"
+  }
+
+  tags_all = {
+    STAGE = "dev"
+  }
+}
+
+```
+
 </div>
 
 ---
@@ -701,9 +764,9 @@ def lambda_handler(event, context):
   Terraformer がサポートしている **Terraform のバージョンは 0.13** 。
   でも…… Terraformer import は **terraform 0.13.x は ❌** だけど **Terraform 1.2.7 は ⭕**
 
-  バージョンが 0.13.x の状態になっているのでこちらはよしなにバージョンアップしてください。
+  M1 Mac だと 0.13.x 系のバージョンのインストールが出来ないので私が以前書いた[記事(M1 Mac でそのバージョンの Terraform 使えないじゃないか！)](https://qiita.com/dodonki1223/items/314fd264cbcb4406c743)を参考にして下さい。
 
-  M1 Mac だと 0.13.x 系のバージョンのインストールが出来ないので私が以前書いた以下の[記事(M1 Mac でそのバージョンの Terraform 使えないじゃないか！)](https://qiita.com/dodonki1223/items/314fd264cbcb4406c743)を参考にして下さい。
+  バージョンが 0.13.x なのでバージョンアップはよしなにやってください。
 </div>
 
 ---
@@ -761,7 +824,7 @@ def lambda_handler(event, context):
 
   ### 現在の構成では IAM ロール は Terraform で管理するため、Serverless Framework で対象の IAM ロール を参照できるようにします。
 
-  ### ドキュメントを参考にすると **ssm というキーワード** を使うことで **AWS Systems Manager Parameter Store を参照できる** ようになるため、AWS Systems Manager Parameter Store に AWS Lambda で使用する IAM ロール名を設定すれば連携ができそうです。
+  ### ドキュメントを参考にすると **ssm というキーワード** を使うことで **AWS Systems Manager Parameter Store を参照できる** ようになるため、AWS Systems Manager Parameter Store に AWS Lambda で使用する IAM ロール の ARN を設定すれば連携ができそうです。
 
   ### イメージとしては以下のような感じです。
 
@@ -773,6 +836,10 @@ def lambda_handler(event, context):
 </div>
 
 ---
+
+<style scoped>
+code { font-size: 20px }
+</style>
 
 <div style="height: 100%;">
   <h1>5. Serverless Framework → Terraform を連携する</h1>
@@ -789,11 +856,11 @@ def lambda_handler(event, context):
 
   #### AWS Systems Manager Parameter Store の記述をします
 
-  「aws_iam_role_resource_name」に関しては書き換えてください。
+  「aws_iam_role_resource_name」に関しては Terraformer で自動で設定されているはずなのでそちらに書き換えてください。
 
   ```terraform
   resource "aws_ssm_parameter" "lambda_function_iam_role" {
-    name        = "/translate/iam_role/lambda_function_role"
+    name        = "/translate/iam_role/lambda_function_role_arn"
     type        = "String"
     value       = aws_iam_role.aws_iam_role_resource_name.arn
   }
@@ -821,7 +888,7 @@ def lambda_handler(event, context):
       role: ${ssm:/translate/iam_role/lambda_function_role_arn}
   ```
 
-  ### 実際に連携出来ているか試すために Terraform の IAM ロールの `name` を書き換えて `terraform apply` した後、 Serverless Framework で `serverless deploy` してみましょう！
+  ### 実際に連携出来ているか試すために Terraform の IAM ロールの **name** を書き換えて **terraform apply** した後、 Serverless Framework で **serverless deploy** してみましょう！
 
 
 </div>
@@ -834,7 +901,7 @@ def lambda_handler(event, context):
 
   ### これで Serverless Framework → Terraform の連携が完了しました！
 
-  ### Terraform で作成したものを AWS Systems Manager Parameter Store に設定してそれを Serverless Framework で読み込むことで連携出来ましたね。
+  ### Terraform で作成したものを AWS Systems Manager Parameter Store に設定してそれを Serverless Framework で読み込むことで連携出来ます。
 
   ### では最後に Terraform → Serverless Framework の連携方法を見ていきましょう！
 </div>
@@ -890,7 +957,7 @@ def lambda_handler(event, context):
   <h1>6. Terraform → Serverless Framework を連携する</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  ### Terraform 側で以下のように記述し data として扱えるようにします
+  ### Terraform 側で以下のように記述することで data として扱えるようにします
 
   ```terraform
   data "aws_cloudformation_export" "lambda_function_qualified_arn" {
@@ -955,7 +1022,7 @@ def lambda_handler(event, context):
 ---
 
 <style scoped>
-img { width: 80%; }
+img { width: 75%; }
 ul { display: flex; list-style: none; }
 </style>
 
@@ -963,11 +1030,38 @@ ul { display: flex; list-style: none; }
   <h1>7. まとめ</h1>
   <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
 
-  ## 連携させる時はデプロイ順に注意しましょう！ 連携させる時には Terraform か Serverless Framework どちらかのリソースに必ず依存する形になるためです。
+  ## 連携させる時はデプロイ順に注意しましょう！ 
+  ## 連携させる時には Terraform か Serverless Framework どちらかのリソースに必ず依存する形になるためです。
 
   <ul style="text-align: center;">
     <li><img src="https://2.bp.blogspot.com/-9BulXVe7Rmw/UxbLZqq7rZI/AAAAAAAAd9c/XKk2sQt_YWs/s800/gyouretsu.png"></img></li>
     <li><img src="./image/08_manner_warikomi.png"></img></li>
   </ul>
+
+</div>
+
+---
+
+<div style="height: 100%;">
+  <h1>7. まとめ</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ## 何を Terraform で管理させ何を Serverless Framework で管理させるのか？
+  ## 今回紹介させて頂いたものは **開発環境を主軸において管理させる** ものでした。
+
+  ## 途中で紹介した [Serverless Framework のブログ記事](https://www.serverless.com/blog/definitive-guide-terraform-serverless/)では **共有のインフラは Terraform で管理** し **アプリケーション固有のインフラは Serverless Framework で管理する** と良いでしょうと書かれています。とてもバランスが良さそうです！
+
+</div>
+
+---
+
+
+<div style="height: 100%;">
+  <h1>7. まとめ</h1>
+  <p style="border-bottom: solid 5px #808080; margin-top: -2rem"></p>
+
+  ## 今日の発表では Terraform と Serverless Framework のコードは簡略化した形で紹介しました。
+  ## [https://github.com/dodonki1223/translate](https://github.com/dodonki1223/translate) のリポジトリではローカルの開発環境も整えつつ私が実装したものがありますのでよければ参考にして下さい！
+
 
 </div>
