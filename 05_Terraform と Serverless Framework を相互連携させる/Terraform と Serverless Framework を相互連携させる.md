@@ -883,7 +883,6 @@ code { font-size: 20px }
     region: ap-northeast-1
     profile: serverless
     endpointType: regional
-    versionFunctions: false ←　これがいるかは再度確認する
     iam:
       role: ${ssm:/translate/iam_role/lambda_function_role_arn}
   ```
