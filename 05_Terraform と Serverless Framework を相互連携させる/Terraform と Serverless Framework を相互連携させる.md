@@ -69,7 +69,7 @@ section { padding-top: 5rem !important; }
   </div>
 </div>
 
----
+<!-- ---
 
 <div style="height: 100%">
   <h1>自己紹介</h1>
@@ -81,7 +81,7 @@ section { padding-top: 5rem !important; }
     <div style="width: 50%; background: url(./image/01_qiita.png) no-repeat top left; background-size: 72%"></div>
     <div style="width: 50%; background: url(./image/02_article.png) no-repeat top left; background-size: 90%"></div>
   </div>
-</div>
+</div> -->
 
 ---
 
@@ -117,7 +117,7 @@ section { padding-top: 5rem !important; }
   <div style="padding-left: 2rem;">
     <h2 style="padding: 0;">1. 題材</h2>
     <h2 style="padding: 0; color: gray;">2. Terraform と Serverless Framework で管理するもの</h2>
-    <h2 style="padding: 0; color: gray;">3. Serverless Framework を使ってコード化</h2>    
+    <h2 style="padding: 0; color: gray;">3. Serverless Framework を使ってコード化</h2>
     <h2 style="padding: 0; color: gray;">4. Terrafomer を使ってコード化</h2>
     <h2 style="padding: 0; color: gray;">5. Serverless Framework → Terraform を連携する</h2>
     <h2 style="padding: 0; color: gray;">6. Terraform → Serverless Framework を連携する</h2>
