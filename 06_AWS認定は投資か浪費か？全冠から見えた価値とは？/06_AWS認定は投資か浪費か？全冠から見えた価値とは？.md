@@ -3,7 +3,7 @@ marp: true
 theme: default
 paginate: true
 header: "AWS認定は投資か浪費か？ 全冠から見えた価値とは？"
-footer: "© 2025"
+footer: "@dodonki1223"
 style: |
   section {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -78,5 +78,3 @@ style: |
 # メインコンテンツ
 
 ここに各スライドの主要な内容を記述します。
-
-### aaaa
