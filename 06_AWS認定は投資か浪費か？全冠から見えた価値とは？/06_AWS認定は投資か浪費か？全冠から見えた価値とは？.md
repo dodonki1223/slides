@@ -9,6 +9,52 @@ style: |
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     font-family: 'Helvetica Neue', Arial, sans-serif;
   }
+
+  /* center-slideの設定 */
+  section.center-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    height: 100%;
+  }
+  section.center-slide h1 {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  section.center-slide h2 {
+    margin-top: 0 !important;
+  }
+  section.center-slide h3 {
+    margin-top: 0 !important;
+  }
+
+  /* top-slideの設定 */
+  section.top-slide {
+    display: flex !important;            /* 明示的にflex（Marpの仕様に従う） */
+    flex-direction: column !important;   /* 縦に並べる */
+    justify-content: flex-start !important; /* 上詰め！ */
+    align-items: flex-start !important;     /* 左寄せ（必要なら） */
+    text-align: left !important;
+    height: 100% !important;             /* スライドの高さを維持 */
+  }
+  section.top-slide h1 {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  section.top-slide h2 {
+    margin-top: 0 !important;
+  }
+  section.top-slide h3 {
+    margin-top: 0 !important;
+  }
+
+  /* center-slide, top-slide両方の設定 */
+  section.center-slide img,
+  section.top-slide img {
+    margin-top: 1.5em;
+  }
+
   h1 {
     color: #2c3e50;
     font-size: 1.8em;
@@ -52,29 +98,60 @@ style: |
     color: #7f8c8d;
   }
   img {
-    max-width: 80%;
+    max-width: 90%;
     height: auto;
     display: block;
-    margin: 1em auto;
+    margin: 0em auto;
   }
+  .image-reference {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 0em;
+    color: #666;
+  }
+  .image-reference a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  .image-reference a:hover {
+    text-decoration: underline;
+  }
+
 ---
+
+<!-- _class: center-slide -->
 
 # AWS認定は投資か浪費か？
 
 ## 全冠から見えた価値とは？
 
 ---
+
+<!-- _class: top-slide -->
+
 # 目次
 
-- はじめに
-- AWS認定の概要
-- 投資としての価値
-- 時間と費用の分析
-- キャリアへの影響
-- まとめ
+### 1. はじめに
+### 2. AWS認定の概要
+### 3. 投資としての価値
+### 4. 時間と費用の分析
+### 5. キャリアへの影響
+### 6. まとめ
 
 ---
 
-# メインコンテンツ
+<!-- _class: center-slide -->
 
-ここに各スライドの主要な内容を記述します。
+# はじめに ここで質問です！
+
+---
+
+<!-- _class: center-slide -->
+
+![all_certified](./image/00_All_Certified.png)
+
+<div class="image-reference">
+
+[認証バッジ一覧](https://www.credly.com/users/yuuki-takagi.3393fc26)
+
+</div>
