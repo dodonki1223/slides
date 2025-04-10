@@ -55,6 +55,9 @@ style: |
   section.top-slide h3 {
     margin-top: 0 !important;
   }
+  section.top-slide h4 {
+    margin-top: 0 !important;
+  }
 
   section.top-slide .content {
     display: flex;
@@ -122,6 +125,10 @@ style: |
   h3 {
     color: #34495e;
     font-size: 1.3em;
+  }
+  h4 {
+    color: #34495e;
+    font-size: 1em;
   }
   ul {
     list-style-type: none;
@@ -302,8 +309,23 @@ style: |
 
 # 目次
 
-### 2. AWS認定の概要
-### 3. 投資としての価値
-### 4. 時間と費用の分析
-### 5. キャリアへの影響
+### 1. AWS認定全冠までの道のり
+### 2. 全冠して得られたこと
+### 3. 投資だったのか？浪費だったのか？
+### 4. 全冠して見えたAWS認定の価値
+### 5. これから挑戦する人へのアドバイス
 ### 6. まとめ
+
+---
+
+```mermaid
+timeline
+    title Timeline of Industrial Revolution
+    section 17th-20th century
+        Industry 1.0 : Machinery, Water power, Steam <br>power
+        Industry 2.0 : Electricity, Internal combustion engine, Mass production
+        Industry 3.0 : Electronics, Computers, Automation
+    section 21st century
+        Industry 4.0 : Internet, Robotics, Internet of Things
+        Industry 5.0 : Artificial intelligence, Big data, 3D printing
+```
