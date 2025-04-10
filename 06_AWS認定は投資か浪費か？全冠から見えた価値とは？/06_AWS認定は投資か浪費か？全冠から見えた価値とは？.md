@@ -185,7 +185,6 @@ style: |
     color: #555;
   }
 
-
 ---
 
 <!-- _class: center-slide -->
@@ -207,10 +206,8 @@ style: |
 <div class="text">
 
 - LOT に入社して3年と2ヶ月
-- Backend, PEM
-    - 最近は PM もかじっています
-- LegalForce, LegalOn Cloud ではエディタを担当
-    - エディタの初期メンバー
+- Backend, PEM(最近はPMも)
+- LegalForce, LegalOn Cloud ではエディタを担当(初期メンバー)
 - 2024年12月から新プロダクトの方へ移動
 
 </div>
@@ -278,14 +275,13 @@ style: |
 
 # はじめに
 
+![all_certified](./image/00_All_Certified.png)
 
- ![all_certified](./image/00_All_Certified.png)
+<div class="image-reference">
 
-  <div class="image-reference">
+[認証バッジ一覧](https://www.credly.com/users/yuuki-takagi.3393fc26)
 
-  [認証バッジ一覧](https://www.credly.com/users/yuuki-takagi.3393fc26)
-
-  </div>
+</div>
 
 ---
 
@@ -309,7 +305,7 @@ style: |
 
 # 目次
 
-### 1. AWS認定全冠までの道のり
+### **1. AWS認定全冠までの道のり**
 ### 2. 全冠して得られたこと
 ### 3. 投資だったのか？浪費だったのか？
 ### 4. 全冠して見えたAWS認定の価値
@@ -318,14 +314,51 @@ style: |
 
 ---
 
+<!-- _class: top-slide -->
+
+# 1. AWS認定全冠までの道のり
+
+<div style="width: 100%;">
+    <img src="./image/02_Road_Map.png" style="width: 100%; margin: 0 auto;max-width: none;" alt="AWS認定取得のロードマップ" />
+</div>
+
+
+<div style="display:none;">
+
 ```mermaid
+%%{init: { 'logLevel': 'debug', 'theme': 'default' } }%%
+
 timeline
-    title Timeline of Industrial Revolution
-    section 17th-20th century
-        Industry 1.0 : Machinery, Water power, Steam <br>power
-        Industry 2.0 : Electricity, Internal combustion engine, Mass production
-        Industry 3.0 : Electronics, Computers, Automation
-    section 21st century
-        Industry 4.0 : Internet, Robotics, Internet of Things
-        Industry 5.0 : Artificial intelligence, Big data, 3D printing
+    title AWS認定全冠までの道のり
+    section 2019年
+       12月 : ❌️ SAA
+    section 2020年
+        1月  : ⭕️ SAA
+    section 2022年
+        11月 : ⭕️ SAP
+    section 2023年
+        1月  : ⭕️ SOA
+        2月  : ⭕️ DVA : ⭕️ CLF
+        3月  : ⭕️ DOP
+        4月  : ⭕️ SCS
+    section 2024年
+        6月  : ⭕️ ANS
+        7月  : ⭕️ MLS
+        10月 : ⭕️ DEA
+        11月 : ⭕️ MLA : ⭕️ AIF
 ```
+
+</div>
+
+---
+
+<!-- _class: top-slide -->
+
+# 目次
+
+### 1. AWS認定全冠までの道のり
+### **2. 全冠して得られたこと**
+### 3. 投資だったのか？浪費だったのか？
+### 4. 全冠して見えたAWS認定の価値
+### 5. これから挑戦する人へのアドバイス
+### 6. まとめ
