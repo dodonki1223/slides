@@ -7,7 +7,13 @@ footer: "@dodonki1223"
 
 # スライドの説明書き
 ## center-slide
+### 真ん中表示するためのスライド
+
 ## top-slide
+### タイトルを上に表示してコンテツを上から表示するためのスライド
+
+## center-with-top-title
+### タイトルを上に表示しコンテンツを真ん中に表示するためのスライド
 
 style: |
   section {
